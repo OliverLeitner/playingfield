@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAADUsYIAS6/pAAI29gD9/f4A+fHmAA8x0gC8vroAx6HiACBbtgAHbPMAUIvjAD7f+AA6lt4Ah+L9AKyemQD8/vwA/f78AP7+/ADw+P0ATYDRANvUxgCp+PgA6KfAAPRdwQC1ldQA+P79APDXtQB+W6sAqTWYAPz+/QDLx8sArLypAP7+/QD51qcABB/NAOO2hgBXaacAkDZ+APb49gCguuoA2cK4AAMy6wDI9v4A/f7+ANSYuwAFL+MA/v7+AMV7qgBcQ8gA64PMAPLZuQDv1/kAy2frAMK1zgDt7e0ACTbxAOa8oAAH2vsAxV/hAN6F0ABneOEA4IjxAP7+/wCILHsAb4FkAHjKuAChl+sAZEWSAO3l7ADvv/wA3bOBAA1F6QDaluwAj0DIANG1zwD4+f4Al3VLAB2n7gCEW6YApmnQADJmtADJl+IA8s28AP3a0QDKm74A79GxAP7//gD09PQA///+AGmD5QDXg/EA3j6qAKNOkACe7/4A3Y32AB89pQD1f9IAq+z+AD1k5AD9//8A/v//AP///wBxpJkAYqr9AP3t3wDw8PAAtrydALy0xAD7/voASdbuAP39/QDu7u4A39/fAE7Q3gBQlv0AqntEAEux/ADktZcA+P3+AGnLwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWVlZWVlZWVlZEQrZWVlZWVlZWVlYx5hckpOMWVlZWVlZWVlLlxDZwE7HDACLmVlZWVlBGovPyYqGRAFX2JlZWVlR1l3MlZWZWVlEilGZWVlHQwIditlZWVlZRFATBFlZSwYN2VlZWVlZWVlGkg1ZS4kJS5lV29waWllZTM8XmUuFgZlZVc2cGlpbmVlPUVlIUEAZWVlZWVlZWVlZXUfFGUjUi5lZVhlZWVlZQNoU2VlBxNJC3FaNGtlZWVgG1suZStPUU0JOkIOZWU+DRdUZWVlLj4VOSBVZjgtCm10K2VlZWVlZWVlbHMoUCJdD2VlZWVlZWVlZWVlZSdLZWVlZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" rel="icon" type="image/x-icon" />
+    <title>canvas stuff</title>
+    <style>
+        body {
+            background-color: #a9a9a9;
+            font-family: verdana, sans-serif, tahoma;
+            font-size: 12pt;
+        }
+        article {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+        #moveme {
+            background-color: #fff;
+            border: 2px solid blue;
+            width: 600px;
+            height: 400px;
+            margin: auto;
+            padding: 0;
+            position: absolute; /* important for moving around */
+            top: 10px;
+            left: 25%;
+            cursor: move;
+        }
+        #movemeheader {
+            display:block;
+            width: 100%;
+            height: 100%;
+        }
+        #resizeme {
+            background-color: #727272;
+            width: 10px;
+            height: 10px;
+            cursor: se-resize;
+            position:absolute;
+            right: 0;
+            bottom: 0;
+        }
+        #testcanvas li {
+            float: left;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background-color: #fff;
+            float: left;
+            list-style-type: none;
+        }
+        li {
+            width: 100px;
+            margin: 0;
+            padding: 5px;
+            border: 1px solid #000;
+        }
+        li:hover {
+            background-color: #e0e0e0;
+            cursor: grab;
+        }
+        li.selected {
+            background-color: red;
+            color: #fff;
+        }
+        li.li-button {
+            margin: auto;
+            padding: 0;
+            padding-top:40px;
+            padding-bottom:40px;
+            width: 100px;
+            list-style-type: none;
+        }
+        li.li-button:hover {
+            background-color: lightblue;
+        }
+        button.resetButton {
+            margin:0;
+            margin-left:5px;
+            padding:5px;
+            margin-top:10px;
+            clear:both;
+            float: left;
+            width: 100px;
+        }
+        [draggable] {
+            user-select: none;
+        }
+        section.control {
+            clear:both;
+            float:left;
+            width: 200px;
+            margin: 0;
+            padding: 0;
+        }
+        img.testsvg {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <section>
+            <div id="moveme">
+                <div id="movemeheader">Click here to move</div>
+                <div id="resizeme">&nbsp;</div>
+            </div>
+        </section>
+    </article>
+    <script>
+    // https://www.w3schools.com/howto/howto_js_draggable.asp
+    // Make the DIV element draggable:
+    dragElement(document.getElementById("moveme"));
+
+    function dragElement(elmnt) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        if (document.getElementById(elmnt.id + "header")) {
+            // if present, the header is where you move the DIV from:
+            document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+        } else {
+            // otherwise, move the DIV from anywhere inside the DIV:
+            elmnt.onmousedown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // get the mouse cursor position at startup:
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            // call a function whenever the cursor moves:
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // calculate the new cursor position:
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            // set the element's new position:
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            // stop moving when mouse button is released:
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    }
+
+    // resizestuff
+    // https://blog.codezero.xyz/building-interactive-elements-with-html-and-javascript-resizing/
+    var resizeHandle = document.getElementById('resizeme');
+    var box = document.getElementById('moveme');
+
+    resizeHandle.addEventListener('mousedown', initialiseResize, false);
+
+    function initialiseResize(e) {
+        window.addEventListener('mousemove', startResizing, false);
+        window.addEventListener('mouseup', stopResizing, false);
+    }
+    function startResizing(e) {
+        box.style.width = (e.clientX - box.offsetLeft) + 'px';
+        box.style.height = (e.clientY - box.offsetTop) + 'px';
+    }
+    function stopResizing(e) {
+        window.removeEventListener('mousemove', startResizing, false);
+        window.removeEventListener('mouseup', stopResizing, false);
+    }
+    </script>
+</body>
+</html>

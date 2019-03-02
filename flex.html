@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flexbox playing</title>
+    <!-- https://blog.kulturbanause.de/2013/07/einfuhrung-in-das-flexbox-modell-von-css/ -->
+    <style>
+    .flex-container {
+        display: flex; /* activate flex stuff */
+        justify-content: center; /* align elements by the center */
+        align-items: center; /* additional from flexbox tut... */
+        flex-wrap: wrap; /* defaults to nowrap, this gets interresting for not having all elements on same "row" */
+    }
+    /* additional styles for some styling... */
+    .flex-item {
+        background-color:lightblue;
+        height: 200px;
+        /* center text start */
+        text-align: center;
+        vertical-align: middle;
+        line-height: 200px; /* same as height */
+        /* center text end */
+        margin: 10px; /* spacing between elements */
+        display: block; /* for making elements react to the mouse if needed... */
+    }
+    .flex-item {
+        flex-grow: 1; /* can the divs grow in width? */
+        flex-shrink: 1; /* can they shrink? */
+        flex-basis: 25%; /* setting item widths (how many per line...) */
+    }
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="flex-item">item 1</div>
+        <div class="flex-item">item 2</div>
+        <div class="flex-item">item 3</div>
+        <div class="flex-item">item 4</div>
+        <div class="flex-item">item 5</div>
+        <!-- for testing with more elements ... -->
+        <!--div class="flex-item">item 6</div>
+        <div class="flex-item">item 7</div>
+        <div class="flex-item">item 8</div>
+        <div class="flex-item">item 9</div>
+        <div class="flex-item">item 10</div>
+        <div class="flex-item">item 11</div>
+        <div class="flex-item">item 12</div>
+        <div class="flex-item">item 13</div>
+        <div class="flex-item">item 14</div>
+        <div class="flex-item">item 15</div>
+        <div class="flex-item">item 16</div-->
+    </div>
+</body>
+</html>

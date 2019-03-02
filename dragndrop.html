@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAADUsYIAS6/pAAI29gD9/f4A+fHmAA8x0gC8vroAx6HiACBbtgAHbPMAUIvjAD7f+AA6lt4Ah+L9AKyemQD8/vwA/f78AP7+/ADw+P0ATYDRANvUxgCp+PgA6KfAAPRdwQC1ldQA+P79APDXtQB+W6sAqTWYAPz+/QDLx8sArLypAP7+/QD51qcABB/NAOO2hgBXaacAkDZ+APb49gCguuoA2cK4AAMy6wDI9v4A/f7+ANSYuwAFL+MA/v7+AMV7qgBcQ8gA64PMAPLZuQDv1/kAy2frAMK1zgDt7e0ACTbxAOa8oAAH2vsAxV/hAN6F0ABneOEA4IjxAP7+/wCILHsAb4FkAHjKuAChl+sAZEWSAO3l7ADvv/wA3bOBAA1F6QDaluwAj0DIANG1zwD4+f4Al3VLAB2n7gCEW6YApmnQADJmtADJl+IA8s28AP3a0QDKm74A79GxAP7//gD09PQA///+AGmD5QDXg/EA3j6qAKNOkACe7/4A3Y32AB89pQD1f9IAq+z+AD1k5AD9//8A/v//AP///wBxpJkAYqr9AP3t3wDw8PAAtrydALy0xAD7/voASdbuAP39/QDu7u4A39/fAE7Q3gBQlv0AqntEAEux/ADktZcA+P3+AGnLwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWVlZWVlZWVlZEQrZWVlZWVlZWVlYx5hckpOMWVlZWVlZWVlLlxDZwE7HDACLmVlZWVlBGovPyYqGRAFX2JlZWVlR1l3MlZWZWVlEilGZWVlHQwIditlZWVlZRFATBFlZSwYN2VlZWVlZWVlGkg1ZS4kJS5lV29waWllZTM8XmUuFgZlZVc2cGlpbmVlPUVlIUEAZWVlZWVlZWVlZXUfFGUjUi5lZVhlZWVlZQNoU2VlBxNJC3FaNGtlZWVgG1suZStPUU0JOkIOZWU+DRdUZWVlLj4VOSBVZjgtCm10K2VlZWVlZWVlbHMoUCJdD2VlZWVlZWVlZWVlZSdLZWVlZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" rel="icon" type="image/x-icon" />
+    <title>dragndrop stuff</title>
+    <style>
+        body {
+            background-color: #a9a9a9;
+            font-family: verdana, sans-serif, tahoma;
+            font-size: 12pt;
+        }
+        article {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+        #testcanvas {
+            background-color: #fff;
+            border: 2px solid blue;
+            width: 600px;
+            height: 400px;
+            margin: auto;
+            padding: 0;
+        }
+        #testcanvas li {
+            float: left;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background-color: #fff;
+            float: left;
+            list-style-type: none;
+        }
+        li {
+            width: 100px;
+            margin: 0;
+            padding: 5px;
+            border: 1px solid #000;
+        }
+        li:hover {
+            background-color: #e0e0e0;
+            cursor: grab;
+        }
+        li.selected {
+            background-color: red;
+            color: #fff;
+        }
+        li.li-button {
+            margin: auto;
+            padding: 0;
+            padding-top:40px;
+            padding-bottom:40px;
+            width: 100px;
+            list-style-type: none;
+        }
+        li.li-button:hover {
+            background-color: lightblue;
+        }
+        button.resetButton {
+            margin:0;
+            margin-left:5px;
+            padding:5px;
+            margin-top:10px;
+            float: left;
+            width: 100px;
+        }
+        [draggable] {
+            user-select: none;
+        }
+        section.control {
+            clear:both;
+            float:left;
+            width: 200px;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <section class="control">
+            <ul class="draggable_elements">
+                <li data-uid="elem1" draggable=true ondragstart="return dragStart(event)">entry 1</li>
+                <li data-uid="elem2" draggable=true ondragstart="return dragStart(event)">entry 2</li>
+                <li data-uid="elem3" draggable=true ondragstart="return dragStart(event)">entry 3</li>
+                <li data-uid="elem4" draggable=true ondragstart="return dragStart(event)">entry 4</li>
+            </ul>
+            <button class="resetButton" onclick="javascript:resetAll()">reset touchgrid</button>
+        </section>
+        <section>
+            <div
+                id="testcanvas"
+                ondragenter="return dragEnter(event)"
+                ondrop="return dragDrop(event)"
+                ondragover="return dragOver(event)">
+            </div>
+        </section>
+    </article>
+    <!-- drag stuff -->
+    <script>
+        function dragStart(ev) {
+            var sourceElem = ev.srcElement.dataset.uid;
+            ev.dataTransfer.effectAllowed='move';
+            // get the transfer data in
+            ev.dataTransfer.setData("Text", sourceElem);
+            return true;
+        }
+
+        function dragEnter(ev) {
+            ev.preventDefault();
+            return true;
+        }
+
+        function dragOver(ev) {
+            return false;
+        }
+
+        function resetAll() {
+            document.getElementById("testcanvas").innerHTML = "";
+        }
+
+        function dragDrop(ev) {
+            var src = ev.dataTransfer.getData("Text");
+            var dataElem = document.querySelector('[data-uid=' + src + ']');
+            var mycanvas = document.getElementById("testcanvas");
+            // clone the elem, so it doesnt get removed from ul before appending
+            if (mycanvas) {
+                var target1 = dataElem.cloneNode(true);
+                target1.classList.add("li-button");
+                var hasClicked = false;
+                if (target1) {
+                    mycanvas.appendChild(target1);
+                    target1.onclick = function (evt) {
+                        // remove all selections
+                        mycanvas.querySelectorAll("li").forEach((li) => {
+                            if (li.classList.contains("selected")) {
+                                li.classList.remove("selected");
+                            }
+                        });
+                        // select the currently clicked element
+                        evt.target.classList.add("selected");
+                        // making sure we got just one listener
+                        if (!hasClicked) {
+                            document.body.addEventListener("keydown", function(e){
+                                if (e.code === 'Delete') {
+                                    mycanvas.childNodes.forEach((node) => {
+                                        if (node === target1) {
+                                            mycanvas.removeChild(target1);
+                                        }
+                                    });
+                                }
+                                if (e.code === 'Escape' && evt.target.classList.contains("selected")) {
+                                    if (evt.target) {
+                                        if (evt.target === target1) {
+                                            evt.target.classList.remove("selected");
+                                        }
+                                    }
+                                }
+                                document.body.removeEventListener("keydown", (()=>{}));
+                            });
+                            hasClicked = true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>

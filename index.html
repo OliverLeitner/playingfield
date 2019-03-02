@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>playing around with stuff</title>
+    <style>
+    body {
+        height:100vh;
+        display: grid;
+        grid-template-rows: 100px 1fr 100px;
+        grid-template-columns: 15% 35% 25% 25%;
+        /* general styling */
+        font-family: verdana, tahoma, sans-serif;
+        font-size: 15pt;
+        margin: 0;
+        padding: 0;
+    }
+    header.mainheader {
+        background:navy;
+        color: #fff;
+        grid-column-start:1;
+        grid-column-end:5;
+        grid-row-start:1;
+        grid-row-end:2;
+        text-align: center;
+        vertical-align: middle;
+    }
+    h1 {
+        margin-left: 15%;
+    }
+    header.articleheader {
+        background:orange;
+        color: #fff;
+        grid-column-start:1;
+        grid-column-end:5;
+        grid-row-start:1;
+        grid-row-end:1;
+        font-size: 0.8em;
+        text-align: center;
+        padding: 10px;
+    }
+    h2 {
+        margin: 0;
+        padding: 0;
+    }
+    section {
+        grid-column-start: 2;
+        grid-column-end: 5;
+        grid-row-start: 2;
+        grid-row-end: 5;
+    }
+    article {
+        background:gold;
+        margin: 10px 100px;
+    }
+    p {
+        margin: auto;
+        padding: 10px;
+    }
+    aside {
+        background:grey;
+        grid-column-start:1;
+        grid-column-end:1;
+        grid-row-start:2;
+        grid-row-end:4;
+        margin: 0;
+        padding: 0;
+    }
+    nav {
+        font-size: 0.8em;
+    }
+    ul {
+        margin: 0;
+        margin-top: 10px;
+        margin-left: 10px;
+        padding: 0;
+    }
+    ul li {
+        list-style-type: none;
+        line-height: 50px;
+    }
+    ul li a {
+        text-decoration: none;
+        color: #000;
+    }
+    ul li a:hover {
+        text-decoration: underline;
+    }
+    footer {
+        background:navy;
+        color: white;
+        grid-column-start:1;
+        grid-column-end:5;
+        grid-row-start:5;
+        grid-row-end:6;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        font-size: 0.8em;
+        padding-left: 15%;
+    }
+    </style>
+</head>
+<body>
+    <header class="mainheader">
+        <h1>Playing around with today's web tech</h1>
+    </header>
+    <aside>
+        <nav>
+            <ul>
+                <li><a href="dragndrop.html" target="_blank">drag and drop</a></li>
+                <li><a href="canvas.html" target="_blank">canvas</a></li>
+                <li><a href="moveable.html" target="_blank">moving and resizing</a></li>
+                <li><a href="flex.html" target="_blank">flexible boxes</a></li>
+                <li><a href="grid.html" target="_blank">html only grid</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <section>
+        <article>
+            <header class="articleheader">
+                <h2>This is my tryout archive</h2>
+                <p>Stuff im playing around with</p>
+            </header>
+            <p>Enjoy and try stuff to your hearts content! (web console anyone?)</p>
+        </article>
+    </section>
+    <footer>
+        <p>Copyright 2019 Oliver Leitner</p>
+    </footer>
+</body>
+</html>
