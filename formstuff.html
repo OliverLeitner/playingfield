@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Have a form without anything external</title>
+    <style>
+        form fieldset label {
+            clear: both;
+            float: left;
+            width: 1024px;
+            border: 1px dotted #000;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        form fieldset label:hover {
+            background-color: #ccc;
+        }
+        form fieldset label span {
+            clear: both;
+            float: left;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <p>Form stuff not using any component stuff or framework stuff.</p>
+        <p>Find out more: https://developer.mozilla.org/de/docs/Web/HTML/Element/input</p>
+    </div>
+    <form action="#">
+        <fieldset>
+            <label for="hiddeninput">
+                <span class="title">Hidden field:</span>
+                <input type="hidden" name="hiddeninput" value="hiddenvalue"/>
+            </label>
+            <label for="textinput">
+                <span class="title">Text field:</span>
+                <input type="text" name="textinput"/>
+            </label>
+            <label for="numberinput">
+                <span class="title">Number field:</span>
+                <input type="number" name="numberinput"/>
+            </label>
+            <label for="emailinput">
+                <span class="title">E-Mail field:</span>
+                <input type="email" name="emailinput"/>
+            </label>
+            <label for="passwordinput">
+                <span class="title">Password field:</span>
+                <input type="password" name="passwordinput"/>
+            </label>
+            <label for="uploadinput">
+                <span class="title">Upload field:</span>
+                <input type="upload" name="uploadinput"/>
+            </label>
+            <label for="fileinput">
+                <span class="title">File field:</span>
+                <input type="file" name="fileinput"/>
+            </label>
+            <label for="imageinput">
+                <span class="title">Image field:</span>
+                <input type="image" name="imageinput"/>
+            </label>
+            <label for="colorinput">
+                <span class="title">Color field:</span>
+                <input type="color" name="colorinput"/>
+            </label>
+            <label for="dateinput">
+                <span class="title">Date field:</span>
+                <input type="date" name="dateinput"/>
+            </label>
+            <label for="datetimelocalinput">
+                <span class="title">Date-Time-Local field:</span>
+                <input type="datetime-local" name="datetimelocalinput"/>
+            </label>
+            <label for="monthinput">
+                <span class="title">Month field:</span>
+                <input type="month" name="monthinput"/>
+            </label>
+            <label for="checkboxinput">
+                <span class="title">Checkbox field:</span>
+                <input type="checkbox" name="checkboxinput"/>
+            </label>
+            <label for="radioinput">
+                <span class="title">Radio field:</span>
+                <input type="radio" name="radioinput"/>
+            </label>
+            <label for="rangeinput">
+                <span class="title">Range field:</span>
+                <input type="range" name="rangeinput"/>
+            </label>
+            <label for="searchinput">
+                <span class="title">Search field:</span>
+                <input type="search" name="searchinput"/>
+            </label>
+            <label for="telinput">
+                <span class="title">Tel field:</span>
+                <input type="tel" name="telinput"/>
+            </label>
+            <label for="timeinput">
+                <span class="title">Time field:</span>
+                <input type="time" name="timeinput"/>
+            </label>
+            <label for="urlinput">
+                <span class="title">URL field:</span>
+                <input type="url" name="urlinput"/>
+            </label>
+            <label for="weekinput">
+                <span class="title">Week field:</span>
+                <input type="week" name="weekinput"/>
+            </label>
+            <label for="datetimeinput">
+                <span class="title">DateTime field:</span>
+                <input type="datetime" name="datetimeinput"/>
+            </label>
+            <label for="pet-select">
+                <span class="title">Select element:</span>
+                <select id="pet-select">
+                    <option value="">--Please choose an option--</option>
+                    <option value="dog">Dog</option>
+                    <option value="cat">Cat</option>
+                    <option value="hamster">Hamster</option>
+                    <option value="parrot">Parrot</option>
+                    <option value="spider">Spider</option>
+                    <option value="goldfish">Goldfish</option>
+                </select>
+            </label>
+            <label for="dino-select">
+                <span class="title">Select element w Grouping:</span>
+                <select id="dino-select">
+                    <optgroup label="Theropods">
+                        <option>Tyrannosaurus</option>
+                        <option>Velociraptor</option>
+                        <option>Deinonychus</option>
+                    </optgroup>
+                    <optgroup label="Sauropods">
+                        <option>Diplodocus</option>
+                        <option>Saltasaurus</option>
+                        <option>Apatosaurus</option>
+                    </optgroup>
+                </select>
+            </label>
+            <label for="outputcombi">
+                <span class="title">Output element combi:</span>
+                <form oninput="result.value=parseInt(a.value)+parseInt(b.value)">
+                    <input type="range" name="b" value="50" /> +
+                    <input type="number" name="a" value="10" /> =
+                    <output name="result">60</output>
+                </form>
+            </label>
+            <label for="story">
+                <span class="title">Text area:</span>
+                <textarea id="story" name="story" rows="5" cols="33">
+                    It was a dark and stormy night...
+                </textarea>
+            </label>
+            <label for="fuel">
+                <span class="title">Meter element:</span>
+                <meter id="fuel" name="fuel" min="0" max="100" low="33" high="66" optimum="80" value="50">
+                    at 50/100
+                </meter>
+            </label>
+            <label for="progressbar">
+                <span class="title">Progress bar:</span>
+                <progress name="progressbar" value="70" max="100">70 %</progress>
+            <label for="custombutton">
+                <span class="title">Custom button:</span>
+                <button name="custombutton">Custom button</button>
+            </label>
+            <label for="browsers">
+                <span class="title">Datalist element:</span>
+                <input list="browsers" />
+                <datalist id="browsers">
+                    <option value="Chrome">
+                    <option value="Firefox">
+                    <option value="Internet Explorer">
+                    <option value="Opera">
+                    <option value="Safari">
+                </datalist>
+            </label>
+            <label for="submitinput">
+                <span class="title">Submit Button:</span>
+                <input type="submit" name="submitinput"/>
+            </label>
+            <label for="resetinput">
+                <span class="title">Reset Button:</span>
+                <input type="reset" name="resetinput"/>
+            </label>
+        </fieldset>
+    </form>
+</body>
+</html>
