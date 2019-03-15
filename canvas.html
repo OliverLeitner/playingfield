@@ -92,20 +92,25 @@
     <!-- drag stuff and canvas stuff -->
     <script>
         // initialize canvas stuff...
-        var canvas = document.querySelector('canvas');
-        var ctx = canvas.getContext('2d');
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
 
         // prepping the svg elem for the image
         var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 
+        // this shows the text in firefox too
+        // https://bugzilla.mozilla.org/show_bug.cgi?id=700533
+        svg.setAttribute("width", 200);
+        svg.setAttribute("height", 50);
+
         // prepping the actual svg content
         var text = document.createTextNode("its some text node");
 
         // building the container for the text
-        var element = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        element.setAttributeNS(null, 'x', 5);
-        element.setAttributeNS(null, 'y', 30);
+        var element = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        element.setAttributeNS(null, "x", 5);
+        element.setAttributeNS(null, "y", 30);
 
         // append the content to the svg...
         element.appendChild(text);
@@ -115,13 +120,13 @@
         var xml = new XMLSerializer().serializeToString(svg);
 
         // make an image blob from the string
-        var blob = new Blob([xml], {type: 'image/svg+xml'});
+        var blob = new Blob([xml], {type: "image/svg+xml"});
 
         // setup a fake url for the img src
         var url = URL.createObjectURL(blob);
 
         // create the actual image
-        var img = document.createElement('img');
+        var img = document.createElement("img");
 
         // some styling stuff, this im still testing
         img.setAttribute("class", "testsvg");
